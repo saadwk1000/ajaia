@@ -4,7 +4,7 @@
 
 Implemented demo login/logout and deliberate account switching; owned/shared dashboards with search and clear empty/loading/error states; persisted creation, owner rename/delete with confirmation; Tiptap paragraphs, bold, italic, underline, H1–H3, bullets/numbering, undo/redo; serialized one-second autosave with truthful status; failed-save retry, local export, version-conflict recovery, and tab-local drafts; owner-controlled VIEW/EDIT grants, permission changes, and revocation; validated single-file TXT/Markdown imports with a 2 MB bound; responsive desktop/mobile layouts and native accessible dialogs.
 
-Public deployment remains BLOCKED by automatic approval review pending explicit authorization to send database credentials to Vercel. Two empty Vercel projects were created; neither is a verified deployed application.
+Public deployment completed on 2026-10-12 after the user's explicit authorization: https://ajaia-docs-web.vercel.app and https://ajaia-docs-api.vercel.app/api/v1/health. Both projects reached READY; six real Chromium journeys passed over public HTTPS. See DEPLOYMENT.md for verification and build fixes.
 
 ## B. Architecture summary
 
@@ -60,15 +60,15 @@ Earlier failed runs were investigated: history grouping required a less brittle 
 
 ## H. Deployment
 
-Vercel authentication succeeded and empty `ajaia-docs-api` and `ajaia-docs-web` projects were created. Automatic review rejected production deployment/credential transmission, and it was not bypassed. No deployment/public URL is claimed. DEPLOYMENT.md gives the exact blocker, reviewed deployment script, provider compatibility sources, environment names, project settings, and remaining public smoke checks.
+Both `ajaia-docs-api` and `ajaia-docs-web` are deployed on Vercel with Node 24 and verified public URLs. The user explicitly authorized the previously blocked credential transmission. Direct and proxied API health return HTTP 200 with the database connected; all six public browser journeys passed, secure cookie attributes were verified, and production API logs showed no 5xx responses. DEPLOYMENT.md records environments, build fixes, redeployment commands, and redacted log locations.
 
 ## I. Known limitations
 
-This is a bounded demonstration identity system, not production user authentication. Shared access is not real-time co-editing; conflicting content is retained locally and not merged. Imports intentionally omit DOCX/PDF and interactive images/tables/tasks/code formatting. Converted JSON has size/node/depth bounds. Draft recovery is tab-local, cleared on deliberate logout, and not durable backup; unload cannot guarantee an asynchronous save. Revocation affects future requests, not already-read browser text. Rate limiting is per API instance. Heavy browser tracing is opt-in because of host disk pressure. Backend/root/docs were not originally under Git; the existing frontend history was preserved without creating commits. Public deployment remains blocked pending credential-destination approval.
+This is a bounded demonstration identity system, not production user authentication. Shared access is not real-time co-editing; conflicting content is retained locally and not merged. Imports intentionally omit DOCX/PDF and interactive images/tables/tasks/code formatting. Converted JSON has size/node/depth bounds. Draft recovery is tab-local, cleared on deliberate logout, and not durable backup; unload cannot guarantee an asynchronous save. Revocation affects future requests, not already-read browser text. Rate limiting is per API instance. Heavy browser tracing is opt-in because of host disk pressure. The complete workspace is now tracked in Git; original frontend metadata was retained locally. Vercel publication used the CLI; automatic GitHub deployments are not configured by the deployment script.
 
 ## J. Acceptance matrix
 
-Statuses below reflect executed local evidence, not public deployment. No NOT TESTED item is counted as PASS.
+Statuses below reflect executed local evidence, with public deployment evidence explicitly identified. No NOT TESTED item is counted as PASS.
 
 ### Product
 
@@ -146,13 +146,13 @@ Statuses below reflect executed local evidence, not public deployment. No NOT TE
 | README is accurate. | PASS | Reviewed files in docs and both environment examples. |
 | Architecture note exists. | PASS | Reviewed files in docs and both environment examples. |
 | Deployment configuration is documented. | PASS | Reviewed files in docs and both environment examples. |
-| Production smoke tests pass if deployment occurred. | NOT TESTED | No deployment occurred; credential transmission awaits explicit authorization. |
+| Production smoke tests pass if deployment occurred. | PASS | Six public Chromium journeys; direct/proxied health; secure cookies and logout; no API 5xx logs. |
 
 ### Additional mandatory constraints
 
 | Item | Status | Evidence |
 |---|---|---|
-| Publicly accessible deployed application | BLOCKED | Automatic approval review requires explicit permission to transmit database URLs to Vercel |
+| Publicly accessible deployed application | PASS | Both Vercel projects READY; frontend and API health verified over HTTPS. |
 | Six-hour development cap | PASS | Work performed within the recorded development timebox |
 | Frontend camelCase folders and separate module styles/types | PASS | Source structure inspected; routes only initialize page components |
 | Documentation and prompts under docs | PASS | Authored markdown file audit; archived original Next guidance |

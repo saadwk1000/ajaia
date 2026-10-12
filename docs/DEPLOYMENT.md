@@ -4,9 +4,14 @@
 
 The configured managed PostgreSQL database was reachable, initially had no public application tables, and was successfully migrated and seeded. Local production builds, database workflows, and browser checks are recorded in ACCEPTANCE.md.
 
-Vercel CLI authentication succeeded. Two empty projects were created in the authenticated account: `ajaia-docs-api` and `ajaia-docs-web`. No deployment succeeded, and no public application URL is verified.
+On 2026-10-12 the user explicitly authorized deployment of both apps. The earlier credential-destination approval blocker was resolved, and both production deployments reached READY:
 
-Automatic approval review rejected `node scripts/deploy.mjs` because deployment sends `DATABASE_URL` and `DIRECT_URL` from `backend/.env` to Vercel and creates production deployments without explicit user authorization to send those secrets to that destination. No workaround was attempted. The required next action is permission to send those database URLs as sensitive production environment variables to the new Ajaia API Vercel project and publish both apps. Reconsider the database credentials/service if this database should not be used for a public demo.
+- Frontend: https://ajaia-docs-web.vercel.app
+- API health: https://ajaia-docs-api.vercel.app/api/v1/health
+
+The frontend login page returns HTTP 200. Both direct API health and the frontend's `/api/v1/health` proxy return HTTP 200 with `database: connected`. All six Chromium journeys passed against the public frontend in 1.9 minutes: editing/formatting/persistence, TXT/Markdown imports, sharing and revocation, failed-save retry, version conflicts, and mobile draft recovery/logout. An independent HTTPS check confirmed Secure, HttpOnly, SameSite=Lax session cookies and successful logout. API production logs contained no 5xx responses during verification. Database credentials are sensitive production variables only in the backend project.
+
+Deployment build fixes: pinned pnpm 11.28.5 because Vercel could not install the previous 11.12.0 executable; enabled workspace source access outside each project root; replaced Helmet's default import with its named policy exports to satisfy Vercel's additional TypeScript compilation. A response-header comparison verified all Helmet default protections remain identical. Final local lint/types, 38 unit tests, and nine deployment routing checks passed. Both Vercel production builds passed. Redacted deployment logs are stored in `docs/verification`.
 
 ## Prepared path
 
@@ -34,13 +39,19 @@ Project settings:
 
 Production API cookies are Secure, HttpOnly, SameSite=Lax. Frontend rewrites proxy `/api/v1` to API_URL, preserving same-origin browser sessions. FRONTEND_ORIGIN must exactly match the public frontend origin; preview origins are not automatically authorized. The script now reads FRONTEND_ORIGIN from backend/.env and API_URL from frontend/.env. Fill the actual project/custom-domain origins first; it rejects missing values and never assumes a project domain. Public access configuration is applied only to these new demo projects.
 
-After explicit authorization, execute from the workspace root:
+To redeploy the authorized projects, execute from the workspace root:
 
 ```sh
 node scripts/deploy.mjs
 ```
 
-Then verify the actual URLs with a real browser: login, create, rich formatting/save, refresh, import, VIEW/EDIT sharing, unauthorized writes, revocation, logout, browser console, and backend logs. Verify the API health endpoint independently. Add verified public URLs only after these checks pass. Cold starts and per-instance rate limiting are deployment limitations; PostgreSQL, not function memory or disk, stores documents and sessions.
+Run browser verification against the deployed frontend without starting local servers:
+
+```sh
+AJAIA_E2E_BASE_URL=https://ajaia-docs-web.vercel.app pnpm test:e2e
+```
+
+Cold starts and per-instance rate limiting are deployment limitations; PostgreSQL, not function memory or disk, stores documents and sessions. These projects were published through the CLI; automatic deployment on GitHub pushes is not configured by this script.
 
 ## Other Node hosts
 
@@ -48,7 +59,7 @@ A compatible Node service may run `pnpm --filter backend prisma:generate && pnpm
 
 ## Client environment handoff
 
-The checked-in example files and local frontend/.env/backend/.env now list deployment settings. Existing local database credentials were retained. URL fields are intentionally blank: the client must fill them. Neither .env file is uploaded by the deployment script. Add the real values to each project's Settings → Environment Variables before deployment; local .env files are not a substitute for Vercel project environment settings.
+The checked-in examples keep client URL fields blank. Local frontend/.env/backend/.env and Vercel Production environments now contain the verified app origins; existing database credentials were retained. Neither .env file is uploaded as source. The deployment script configures project variables through the Vercel API before building; manual deployments must also configure them in Settings → Environment Variables.
 
 | Project | Variable | Client action |
 |---|---|---|

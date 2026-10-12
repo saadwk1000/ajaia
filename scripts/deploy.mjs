@@ -113,6 +113,7 @@ for (const [project, directory, framework, buildCommand] of [
     ],
     JSON.stringify({
       rootDirectory: directory,
+      sourceFilesOutsideRootDirectory: true,
       framework,
       buildCommand,
       installCommand: "pnpm install --frozen-lockfile",

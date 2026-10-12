@@ -1,5 +1,7 @@
 # GitHub publication verification
 
+Subsequent deployment: both applications were published on Vercel after explicit user authorization, and all six public browser journeys passed. See DEPLOYMENT.md for the final public URLs and deployment fixes. The original publication checks below describe the initial push.
+
 Destination: https://github.com/saadwk1000/ajaia.git, branch main. The destination had no existing commits/branches when inspected. The complete source tree was prepared in an isolated Git checkout to preserve the original frontend Git metadata. Frontend files are included directly, not as a submodule.
 
 | Verification before commit | Result |

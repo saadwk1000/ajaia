@@ -1,5 +1,7 @@
 # Vercel configuration update
 
+Current deployment status (2026-10-12): the user subsequently authorized both Vercel deployments. They are live at https://ajaia-docs-web.vercel.app and https://ajaia-docs-api.vercel.app/api/v1/health. All six public browser journeys passed, direct/proxied health returned HTTP 200, and secure cookies were verified. Actual local URL fields and Vercel Production variables are now populated; checked-in examples retain blank client fields. See DEPLOYMENT.md for the final deployment record. The configuration-only verification below is historical.
+
 Prepared deployment configuration for the client to supply their actual domains and database settings. Existing DATABASE_URL and DIRECT_URL in backend/.env were preserved. URL fields are blank intentionally; they must be filled before production builds or startup.
 
 ## Client steps

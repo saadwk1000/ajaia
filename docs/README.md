@@ -4,7 +4,7 @@ A focused document workspace for small teams and product demonstrations. Create 
 
 ## Prerequisites and setup
 
-Use Node 24 LTS (development was verified on Node 26.5.0), pnpm 11.12.0, and PostgreSQL. This workspace preserves the existing `frontend` and `backend` directories. All commands below run from the workspace root unless explicitly marked otherwise.
+Use Node 24 LTS (development was verified on Node 26.5.0), pnpm 11.28.5, and PostgreSQL. This workspace preserves the existing `frontend` and `backend` directories. All commands below run from the workspace root unless explicitly marked otherwise.
 
 ```sh
 pnpm install --frozen-lockfile

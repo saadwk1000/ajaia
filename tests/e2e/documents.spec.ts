@@ -5,7 +5,7 @@ const ids = {
 };
 const requestHeaders = {
   "X-Ajaia-Request": "1",
-  Origin: "http://localhost:3000",
+  Origin: process.env.AJAIA_E2E_BASE_URL || "http://localhost:3000",
 };
 async function login(page: Page, name: "Alice" | "Bob" = "Alice") {
   await page.goto("/login");

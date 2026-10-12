@@ -6,7 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { json } from 'express';
 import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
+import * as helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
 import type { Request, Response, NextFunction, Express } from 'express';
 import { ApiExceptionFilter } from './exception.filter.js';
@@ -16,7 +16,23 @@ export function configureApp(app: INestApplication) {
   const expressApp: Express = app.getHttpAdapter().getInstance();
   expressApp.set('trust proxy', config.getOrThrow<number>('TRUST_PROXY'));
   app.setGlobalPrefix('api/v1');
-  app.use(helmet());
+  // Named exports work with both native ESM and Vercel's function compiler.
+  // These are the policies enabled by Helmet's default middleware.
+  app.use(
+    helmet.contentSecurityPolicy(),
+    helmet.crossOriginOpenerPolicy(),
+    helmet.crossOriginResourcePolicy(),
+    helmet.originAgentCluster(),
+    helmet.referrerPolicy(),
+    helmet.strictTransportSecurity(),
+    helmet.xContentTypeOptions(),
+    helmet.xDnsPrefetchControl(),
+    helmet.xDownloadOptions(),
+    helmet.xFrameOptions(),
+    helmet.xPermittedCrossDomainPolicies(),
+    helmet.xPoweredBy(),
+    helmet.xXssProtection(),
+  );
   app.use(json({ limit: '2mb' }));
   app.use(cookieParser());
   app.enableCors({
