@@ -1,0 +1,136 @@
+.main {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 95px 30px 50px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 70px;
+}
+.symbol {
+  width: 58px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: #eceaff;
+  border-radius: 14px;
+  margin-bottom: 25px;
+}
+.intro h1 {
+  font-size: 46px;
+  letter-spacing: -1.7px;
+  line-height: 1.16;
+  margin-bottom: 20px;
+}
+.intro > p:last-child {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.eyebrow {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.9px;
+  margin-bottom: 14px;
+}
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 6px 24px #20252c04;
+  h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+  }
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 20px 0;
+  }
+}
+.caption {
+  color: var(--muted);
+  font-size: 13px;
+}
+.legend {
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+.account {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 9px;
+  cursor: pointer;
+  input {
+    accent-color: var(--accent);
+    order: 3;
+    margin-left: auto;
+  }
+  strong {
+    display: block;
+    font-size: 13px;
+  }
+  small {
+    color: var(--muted);
+    font-size: 11px;
+  }
+}
+.selected {
+  border-color: #9c94eb;
+  background: #faf9ff;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  background: #eeecfa;
+  border-radius: 50%;
+  color: #665aaa;
+  font-weight: 600;
+}
+.continue {
+  width: 100%;
+}
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 22px 0 0;
+}
+.error {
+  color: #b42318;
+}
+.footer {
+  text-align: center;
+  color: #979da6;
+  font-size: 12px;
+  padding: 30px;
+}
+@media (max-width: 850px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 480px;
+    padding-top: 36px;
+  }
+  .intro h1 {
+    font-size: 34px;
+  }
+  .symbol {
+    display: none;
+  }
+  .intro > p:last-child {
+    font-size: 14px;
+  }
+}

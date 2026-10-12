@@ -1,0 +1,69 @@
+.header {
+  height: 74px;
+  background: white;
+  border-bottom: 1px solid var(--line);
+  padding: 0 max(24px, calc((100vw - 1160px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 36px;
+  background: var(--accent);
+  color: white;
+  border-radius: 9px;
+  margin-right: 3px;
+}
+.docs {
+  color: var(--muted);
+  font-weight: 400;
+}
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.demo {
+  color: var(--muted);
+  font-size: 12px;
+  padding: 4px 9px;
+  background: var(--surface);
+  border-radius: 5px;
+  margin-right: 12px;
+}
+.avatar {
+  background: #eceafd;
+  border: 1px solid #dcd8fa;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #6256af;
+  font-weight: 600;
+}
+.name {
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .header {
+    padding: 0 16px;
+  }
+  .demo,
+  .name,
+  .logout {
+    display: none;
+  }
+}

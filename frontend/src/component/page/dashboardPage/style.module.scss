@@ -1,0 +1,157 @@
+.main {
+  max-width: 1208px;
+  margin: 0 auto;
+  padding: 48px 24px 20px;
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  h1 {
+    margin-bottom: 10px;
+  }
+  p:last-child {
+    color: var(--muted);
+    margin-bottom: 0;
+  }
+}
+.eyebrow {
+  color: #8b8d9f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+.actions,
+.dialogActions {
+  display: flex;
+  gap: 10px;
+}
+.searchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8e95a0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding-left: 12px;
+  width: min(360px, 70%);
+  input {
+    border: 0;
+    background: transparent;
+    width: 100%;
+    font-size: 13px;
+  }
+}
+.section {
+  margin-top: 30px;
+}
+.sectionHeading h2 {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 19px;
+  svg {
+    color: #838895;
+  }
+  span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+    background: #e9ebf0;
+    padding: 1px 7px;
+    border-radius: 5px;
+    margin-left: 3px;
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.empty {
+  border: 1px dashed #dce0e7;
+  border-radius: 10px;
+  min-height: 185px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  background: #ffffff60;
+  color: #949baa;
+  h3 {
+    color: #606977;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 12px 0 5px;
+  }
+  p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+}
+.error {
+  background: #fff1f0;
+  color: #b42318;
+  border: 1px solid #fecdca;
+  padding: 12px;
+  border-radius: 7px;
+  margin: 18px 0;
+}
+.notice {
+  color: #157347;
+}
+.titleLabel {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.dialogActions {
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+.footer {
+  padding: 35px 0 12px;
+  color: #9ca1ad;
+  font-size: 11px;
+  text-align: center;
+}
+@media (max-width: 950px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .welcome {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .main {
+    padding: 28px 16px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .welcome h1 {
+    font-size: 25px;
+  }
+  .searchRow > button {
+    font-size: 0;
+    gap: 0;
+  }
+}

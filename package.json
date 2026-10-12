@@ -1,0 +1,22 @@
+{
+  "name": "ajaia-docs",
+  "private": true,
+  "packageManager": "pnpm@11.12.0",
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm --filter backend prisma:generate && pnpm -r build",
+    "test": "pnpm --filter backend test",
+    "test:integration": "pnpm --filter backend test:integration",
+    "test:e2e": "playwright test",
+    "db:migrate": "pnpm --filter backend prisma:migrate",
+    "db:seed": "pnpm --filter backend prisma:seed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}

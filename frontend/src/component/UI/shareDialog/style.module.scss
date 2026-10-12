@@ -1,0 +1,70 @@
+.title {
+  margin-bottom: 6px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.caption {
+  color: var(--muted);
+  font-size: 13px;
+}
+.form {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0;
+  label {
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+.invite {
+  display: flex;
+  gap: 8px;
+  select:first-child {
+    flex: 1;
+  }
+}
+.people {
+  font-size: 13px;
+  margin: 26px 0 8px;
+}
+.person {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  small {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  span {
+    color: var(--muted);
+  }
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  select {
+    padding: 6px;
+  }
+}
+.error {
+  color: #b42318;
+  background: #fff1f0;
+  padding: 10px;
+  border-radius: 6px;
+}
+.notice {
+  color: #157347;
+}
+@media (max-width: 420px) {
+  .person {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

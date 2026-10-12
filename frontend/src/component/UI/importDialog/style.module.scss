@@ -1,0 +1,30 @@
+.caption {
+  color: var(--muted);
+  font-size: 13px;
+}
+.file {
+  border: 1px dashed #c9c4ec;
+  border-radius: 10px;
+  background: #faf9ff;
+  padding: 28px 18px;
+  margin: 22px 0 14px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  color: var(--accent);
+  input {
+    width: 100%;
+    color: var(--ink);
+    background: white;
+    font-size: 12px;
+  }
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 22px;
+}
+.error {
+  color: #b42318;
+}

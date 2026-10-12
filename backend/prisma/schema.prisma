@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+datasource db {
+  provider = "postgresql"
+}
+enum Permission {
+  VIEW
+  EDIT
+}
+model User {
+  id String @id @default(uuid()) @db.Uuid
+  name String
+  email String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  documents Document[]
+  shares DocumentShare[]
+  sessions Session[]
+}
+model Document {
+  id String @id @default(uuid()) @db.Uuid
+  title String @db.VarChar(150)
+  content Json
+  ownerId String @db.Uuid
+  version Int @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  shares DocumentShare[]
+  @@index([ownerId, updatedAt])
+}
+model DocumentShare {
+  id String @id @default(uuid()) @db.Uuid
+  documentId String @db.Uuid
+  userId String @db.Uuid
+  permission Permission
+  createdAt DateTime @default(now())
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([documentId, userId])
+  @@index([userId])
+}
+model Session {
+  tokenHash String @id
+  userId String @db.Uuid
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([expiresAt])
+}
